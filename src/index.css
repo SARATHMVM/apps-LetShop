@@ -1,0 +1,82 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 80%;
+    border: 1px solid gray;
+    padding: 10px;
+    background: whitesmoke;
+}
+.material-icons{
+    font-size: 16px;
+    background: yellow;
+    border: 1px solid yellowgreen;
+    cursor: pointer;
+}
+.navigationbar{
+    background-color: blue;
+}
+.filter
+{
+    width: 82%;
+    background: whitesmoke;
+}
+.navDiv{
+    display: inline-block;
+}
+.cartImg{
+    height: 40Px;
+    width: 40px;
+}
+.brand-logo{
+    text-align: center;
+}
+.discount{
+    color: green;
+}
+.underlined{
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+.card{
+    margin-bottom: 4%;
+    margin-left: 1.5%;
+}
+.card-image img{
+    width: 100px;
+    height: 100px;
+}
+.card .card-image .card-title{
+    color: black;
+    font-weight: 400
+}
+.cart{
+    margin-top:40px;
+}
+.collection .collection-item{
+    display: flex;
+}
+.collection-item.avatar .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ee6e73;
+    display: block;
+    margin-bottom: 20px;
+    
+}
+.collection .collection-item img{
+    width: 150px;
+    margin-right: 25px;
+}
+.item-desc{
+    align-self:center;
+}
+.filterSpan{
+    padding-left:5% ;
+    cursor: pointer;
+}
+.filterSpanHigh{
+    padding-left: 5%;
+    cursor: pointer;
+    color: blue;
+}
