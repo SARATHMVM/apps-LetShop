@@ -87,3 +87,11 @@
 .container{
     background: whitesmoke;
 }
+.filterScroll{
+    display: flex;
+    border: 1px solid gray;
+    width: 78%;
+    height: 20px;
+    margin: 1%;
+    padding: 1%;
+}

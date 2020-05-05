@@ -54,7 +54,7 @@ import sortBy from 'lodash/sortBy'
 
         return(
             <div className="container">
-                <div className="filter">
+                <div className="filterScroll">
                 <span>Sort By</span>
                 <span className={this.props.ascendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByPrice}>Price:High-Low</span>
                 <span className={this.props.desendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDesendingPrice}>Price:Low-High</span>
