@@ -4,7 +4,7 @@ import Item3 from '../../images/samgalaxy.jpeg'
 import Item4 from '../../images/samsung.jpeg'
 import Item5 from '../../images/samsungs20.jpg'
 import Item6 from '../../images/samlap.jpeg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,DISCOUNT_SORT,ASCENDING_SORT,SUB_SHIPPING } from '../actions/action-types/cart-actions'
 import { act } from 'react-test-renderer'
 
 
@@ -115,13 +115,13 @@ const cartReducer= (state = initState,action)=>{
           }
     }
 
-    if(action.type=== 'SUB_SHIPPING'){
+    if(action.type=== SUB_SHIPPING){
         return{
             ...state,
             total: state.total - 6
         }
   }
-  if(action.type === 'ASCENDING_SORT'){
+  if(action.type === ASCENDING_SORT){
     return{
         ...state,
         items : action.value,
@@ -131,7 +131,7 @@ const cartReducer= (state = initState,action)=>{
 
     }
 }
-if(action.type === 'DISCOUNT_SORT'){
+if(action.type === DISCOUNT_SORT){
     return{
         ...state,
         items : action.value,

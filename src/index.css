@@ -80,3 +80,10 @@
     cursor: pointer;
     color: blue;
 }
+.cartCount{
+    color: white;
+    font-size: 26px;
+}
+.container{
+    background: whitesmoke;
+}
