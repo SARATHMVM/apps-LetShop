@@ -3,40 +3,77 @@ import { connect } from 'react-redux'
 import { addToCart } from './actions/cartActions'
 import { Link } from 'react-router-dom'
 import sortBy from 'lodash/sortBy'
+import Main from './range'
 
  class Home extends Component{
- 
     
+    rangeFilter = setTimeout(() => {
+        let minValue = document.querySelectorAll('input')[1].min;
+        let maxValue = document.querySelectorAll('input')[0].max;
+        let prevState = this.props.items;
+        let rangeItems = [];
+        prevState.map(function(item,index){
+            if (item.price > minValue && item.price < maxValue) {
+                rangeItems.push(item);            
+              }
+              
+        })
+        this.props.rangeFilterSort(rangeItems)        
+    },1000);
     handleClick = (id)=>{
         this.props.addToCart(id); 
     }
     sortByPrice = () => {
-        var prevState = this.props.items;
-        var sortedValue = sortBy(prevState, ['price'])
+        let itemSort = this.props.rangeSortFlag ? this.props.rangeItems : this.props.items;    
+        var sortedValue = sortBy(itemSort, ['price'])
         let ascendingSortFlag = true;
         let desendingSortFlag = false;
         let discountSortFlag = false;
-        this.props.ascendingSort(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
+        this.props.rangeSortFlag ? this.props.ascendingSortRange(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag) 
+        : this.props.ascendingSort(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
     }
     sortByDesendingPrice = () => {
-        var prevState = this.props.items;
-        var sortedValue = sortBy(prevState, ['price'])
+        let itemSort = this.props.rangeSortFlag ? this.props.rangeItems : this.props.items;    
+        var sortedValue = sortBy(itemSort, ['price'])
         let desendingSortFlag = true;
         let ascendingSortFlag = false;
         let discountSortFlag = false;
-        this.props.ascendingSort(sortedValue.reverse(),discountSortFlag,ascendingSortFlag ,desendingSortFlag)
+        this.props.rangeSortFlag ? this.props.ascendingSortRange(sortedValue.reverse(),discountSortFlag,ascendingSortFlag ,desendingSortFlag)
+        : this.props.ascendingSort(sortedValue.reverse(),discountSortFlag,ascendingSortFlag ,desendingSortFlag)
     }
     sortByDiscount = () => {
-        var prevState = this.props.items;
-        var sortedValue = sortBy(prevState, ['desc'])
+        let itemSort = this.props.rangeSortFlag ? this.props.rangeItems : this.props.items; 
+        var sortedValue = sortBy(itemSort, ['desc'])
         let discountSortFlag = true;
         let desendingSortFlag = false;
         let ascendingSortFlag = false;
-        this.props.discountSort(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
+        this.props.rangeSortFlag ? this.props.discountSortRange(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
+        : this.props.discountSort(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
+    }
+    rangeFilter = () => {
+        debugger;
+        let minValue = document.querySelectorAll('input')[1].min;
+        let maxValue = document.querySelectorAll('input')[0].max;
+        let prevState = this.props.items;
+        let rangeItems = [];
+        prevState.map(function(item,index){
+            if (item.price > minValue && item.price < maxValue) {
+                rangeItems.push(item);            
+              }
+              
+        })
+        this.props.rangeFilterSort(rangeItems)
+        console.log(rangeItems);
+        console.log(minValue);
+        console.log(maxValue);
+        
     }
     render(){
-        let itemList = this.props.items.map(item=>{
+        debugger;
+        let itemSort = this.props.rangeSortFlag ? this.props.rangeItems : this.props.items;             
+        let itemList = itemSort.map(item=>{
             return(
+                
                 <div className="card" key={item.id}>
                         <div className="card-image">
                             <img src={item.img} alt={item.title}/>
@@ -54,15 +91,27 @@ import sortBy from 'lodash/sortBy'
 
         return(
             <div className="container">
-                <div className="filterScroll">
-                <span>Sort By</span>
-                <span className={this.props.ascendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByPrice}>Price:High-Low</span>
-                <span className={this.props.desendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDesendingPrice}>Price:Low-High</span>
-                <span className={this.props.discountSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDiscount}>Discount</span>
+            <div>
+                <div className="filterComponent">
+                    <div className="boldFont">Filters</div>
+                    <div><Main items={this.props.items}/></div>
+                    <div className="rangeApply" onClick={this.rangeFilter}>Apply</div>
                 </div>
-                <div className="box">
-                    {itemList}
+                <div className="contentComponent">
+                    <div className="filterScroll">
+                    <span className="boldFont">Sort By</span>
+                    <span className={this.props.ascendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByPrice}>Price:High-Low</span>
+                    <span className={this.props.desendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDesendingPrice}>Price:Low-High</span>
+                    <span className={this.props.discountSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDiscount}>Discount</span>
+                    </div>
+                    <div className="box">
+                        {itemList}
+                    </div>
                 </div>
+            </div>
+            <footer className="footer">
+                <p>@copyright</p>
+            </footer>
             </div>
         )
     }
@@ -72,15 +121,20 @@ const mapStateToProps = (state)=>{
       items: state.items,
       ascendingSortFlag: state.ascendingSortFlag,
       desendingSortFlag: state.desendingSortFlag,
-      discountSortFlag: state.discountSortFlag
+      discountSortFlag: state.discountSortFlag,
+      rangeSortFlag : state.rangeSortFlag,
+      rangeItems : state.rangeItems
 
     }
   }
 const mapDispatchToProps= (dispatch)=>{
     return{
         addToCart: (id)=>{dispatch(addToCart(id))},
+        rangeFilterSort: (rangeItems)=>{dispatch({type: 'RANGE_SORT',value:rangeItems})},
         ascendingSort: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'ASCENDING_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
-        discountSort: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})}
+        ascendingSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'ASCENDING_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
+        discountSort: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
+        discountSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})}
     }
 }
 
