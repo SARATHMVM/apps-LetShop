@@ -51,7 +51,6 @@ import Main from './range'
         : this.props.discountSort(sortedValue,discountSortFlag,ascendingSortFlag,desendingSortFlag)
     }
     rangeFilter = () => {
-        debugger;
         let minValue = document.querySelectorAll('input')[1].min;
         let maxValue = document.querySelectorAll('input')[0].max;
         let prevState = this.props.items;
@@ -62,14 +61,10 @@ import Main from './range'
               }
               
         })
-        this.props.rangeFilterSort(rangeItems)
-        console.log(rangeItems);
-        console.log(minValue);
-        console.log(maxValue);
+        this.props.rangeFilterSort(rangeItems);
         
     }
     render(){
-        debugger;
         let itemSort = this.props.rangeSortFlag ? this.props.rangeItems : this.props.items;             
         let itemList = itemSort.map(item=>{
             return(

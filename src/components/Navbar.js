@@ -11,8 +11,6 @@ import { addToCart } from './actions/cartActions'
         alert("Yet to implement!")
     }
      render(){
-
-         debugger;
          //items = this.props.items;
     return(
             <nav className="nav-wrapper">

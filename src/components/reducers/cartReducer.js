@@ -4,7 +4,7 @@ import Item3 from '../../images/samgalaxy.jpeg'
 import Item4 from '../../images/samsung.jpeg'
 import Item5 from '../../images/samsungs20.jpg'
 import Item6 from '../../images/samlap.jpeg'
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,DISCOUNT_SORT,ASCENDING_SORT,SUB_SHIPPING,ASCENDING_RANGESORT,DISCOUNT_RANGESORT } from '../actions/action-types/cart-actions'
+import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING,DISCOUNT_SORT,ASCENDING_SORT,SUB_SHIPPING,ASCENDING_RANGESORT,DISCOUNT_RANGESORT,RANGE_SORT } from '../actions/action-types/cart-actions'
 
 
 
@@ -37,7 +37,6 @@ const initState = {
 
 }
 const cartReducer= (state = initState,action)=>{
-   debugger;
     //INSIDE HOME COMPONENT
     if(action.type === ADD_TO_CART){
           let addedItem = state.items.find(item=> item.id === action.id)
@@ -123,7 +122,7 @@ const cartReducer= (state = initState,action)=>{
             total: state.total - 6
         }
   }
-  if(action.type=== "RANGE_SORT"){
+  if(action.type=== RANGE_SORT){
     return{
         ...state,
         rangeItems : action.value,
@@ -152,7 +151,7 @@ if(action.type === DISCOUNT_SORT){
         rangeSortFlag : false
     }
 }
-if(action.type === "ASCENDING_RANGESORT"){
+if(action.type === ASCENDING_RANGESORT){
     return{
         ...state,
         rangeItems : action.value,
@@ -163,7 +162,7 @@ if(action.type === "ASCENDING_RANGESORT"){
 
     }
 }
-if(action.type === "DISCOUNT_RANGESORT"){
+if(action.type === DISCOUNT_RANGESORT){
     return{
         ...state,
         rangeItems : action.value,
@@ -173,6 +172,16 @@ if(action.type === "DISCOUNT_RANGESORT"){
         rangeSortFlag : true
     }
 }
+/*if(action.type === 'REMOVE_FILTER'){
+    return{
+        ...state,
+        items : state.items,
+        discountSortFlag : false,
+        ascendingSortFlag : false,
+        desendingSortFlag : false,
+        rangeSortFlag : false
+    }
+}*/
 
   else{
     return state

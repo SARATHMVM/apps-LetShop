@@ -12,6 +12,7 @@
     background: yellow;
     border: 1px solid yellowgreen;
     cursor: pointer;
+    padding: 0 10px;
 }
 .navigationbar{
     background-color: blue;
