@@ -130,6 +130,14 @@ const cartReducer= (state = initState,action)=>{
         
     }
   }
+  if(action.type=== 'HANDLE_SEARCHFILTER'){
+    return{
+        ...state,
+        rangeItems : action.value,
+        rangeSortFlag : true
+        
+    }
+  }
   if(action.type === ASCENDING_SORT){
     return{
         ...state,

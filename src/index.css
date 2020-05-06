@@ -1,3 +1,4 @@
+
 .box{
     display: flex;
     justify-content: space-between;
@@ -27,10 +28,11 @@
 }
 .searchDiv{
     display: inline-block;
-    padding-left: 88%;
+    float: right;
 }
 .cartDiv{
     display: inline-block;
+    float: right;
 }
 .cartImg{
     height: 40Px;
@@ -143,3 +145,32 @@
     height: 40Px;
     width: 40px;
 }
+@media only screen and (max-width: 600px){
+    .filterComponent {
+        display: inline-block;
+        width: 100%;
+    }
+    .filterScroll {
+        display: flex;
+        border: 1px solid gray;
+        width: 100%;
+        height: 20px;
+        margin: 1% 0%;
+        padding: 2% 1%;
+        justify-content: space-evenly;
+        font-size: 10px;
+    }
+    .contentComponent {
+        display: inline-block;
+        width: 92%;
+    }
+    .card-image img {
+        width: 120px;
+        height: 120px;
+    }
+    .boldFont {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
