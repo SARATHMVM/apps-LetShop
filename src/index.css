@@ -1,4 +1,19 @@
-
+@font-face {
+    font-family: 'SlatePro-Bk';
+    src: url('./fonts/SlatePro-Bk.eot'), /* IE9 Compat Modes */
+         url('./fonts/SlatePro-Bk.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./fonts/SlatePro-Bk.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/SlatePro-Bk.ttf') format('truetype'),
+         url('./fonts/SlatePro-Bk.otf')
+}
+@font-face {
+  font-family: 'SlatePro-Medium';
+  src: url('./fonts/SlatePro-Medium.eot'), /* IE9 Compat Modes */
+       url('./fonts/SlatePro-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/SlatePro-Medium.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/SlatePro-Medium.ttf') format('truetype'),
+       url('./fonts/SlatePro-Medium.otf')
+}
 .box{
     display: flex;
     justify-content: space-between;
@@ -9,11 +24,14 @@
     background: whitesmoke;
 }
 .material-icons{
+    font-style: normal;
     font-size: 16px;
     background: yellow;
     border: 1px solid yellowgreen;
     cursor: pointer;
     padding: 0 10px;
+    margin-left: 10%;
+    font-family: 'SlatePro-Medium';
 }
 .navigationbar{
     background-color: blue;
@@ -87,6 +105,7 @@
 .filterSpan{
     padding-left:5% ;
     cursor: pointer;
+    font-family: 'SlatePro-Bk';
 }
 .filterSpanHigh{
     padding-left: 5%;
@@ -122,7 +141,7 @@
 }
 .boldFont{
     font-size: 20px;
-    font-weight: bold;
+    font-family: 'SlatePro-Medium';
 }
 .rangeApply{
     width: 40px;
@@ -144,6 +163,15 @@
     padding-right: 88%;
     height: 40Px;
     width: 40px;
+}
+span{
+    font-family: 'SlatePro-Bk';
+}
+p{
+    font-family: 'SlatePro-Bk';
+}
+div{
+    font-family: 'SlatePro-Bk';
 }
 @media only screen and (max-width: 600px){
     .filterComponent {
@@ -169,8 +197,8 @@
         height: 120px;
     }
     .boldFont {
-        font-size: 14px;
-        font-weight: bold;
+        font-size: 16px;
+        font-family: 'SlatePro-Medium';
     }
 }
 

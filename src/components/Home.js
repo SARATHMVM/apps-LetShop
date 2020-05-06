@@ -6,20 +6,6 @@ import sortBy from 'lodash/sortBy'
 import Main from './range'
 
  class Home extends Component{
-    
-    rangeFilter = setTimeout(() => {
-        let minValue = document.querySelectorAll('input')[1].min;
-        let maxValue = document.querySelectorAll('input')[0].max;
-        let prevState = this.props.items;
-        let rangeItems = [];
-        prevState.map(function(item,index){
-            if (item.price > minValue && item.price < maxValue) {
-                rangeItems.push(item);            
-              }
-              
-        })
-        this.props.rangeFilterSort(rangeItems)        
-    },1000);
     handleClick = (id)=>{
         this.props.addToCart(id); 
     }
@@ -95,8 +81,8 @@ import Main from './range'
                 <div className="contentComponent">
                     <div className="filterScroll">
                     <span className="boldFont">Sort By</span>
-                    <span className={this.props.ascendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByPrice}>Price:High-Low</span>
-                    <span className={this.props.desendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDesendingPrice}>Price:Low-High</span>
+                    <span className={this.props.desendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDesendingPrice}>Price:High-Low</span>
+                    <span className={this.props.ascendingSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByPrice}>Price:Low-High</span>
                     <span className={this.props.discountSortFlag ? "filterSpanHigh" :"filterSpan"} onClick={this.sortByDiscount}>Discount</span>
                     </div>
                     <div className="box">
@@ -127,9 +113,9 @@ const mapDispatchToProps= (dispatch)=>{
         addToCart: (id)=>{dispatch(addToCart(id))},
         rangeFilterSort: (rangeItems)=>{dispatch({type: 'RANGE_SORT',value:rangeItems})},
         ascendingSort: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'ASCENDING_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
-        ascendingSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'ASCENDING_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
+        ascendingSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'ASCENDING_RANGESORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
         discountSort: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})},
-        discountSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_SORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})}
+        discountSortRange: (value,discountSortFlag,ascendingSortFlag,desendingSortFlag)=>{dispatch({type: 'DISCOUNT_RANGESORT',value:value,discountSortFlag:discountSortFlag,ascendingSortFlag:ascendingSortFlag,desendingSortFlag:desendingSortFlag})}
     }
 }
 

@@ -28,12 +28,8 @@ import { addToCart } from './actions/cartActions'
          //items = this.props.items;
     return(
             <nav className="nav-wrapper">
-                <div className="container">
-                    <div className="brand-logo">WELCOME TO SHOPPING PAGE</div>
-                    
-                    <div className="navigationbar">
-                        
-    
+                <div className="container">                    
+                    <div className="navigationbar">    
     <div className="homeDiv"><Link to="/"><img className="homeIcon" src={homeIcon}/></Link></div>
     <div className="cartDiv"><Link to="/cart"><img className="cartImg" src={cartIcon}/><span className="cartCount">{this.props.addedItems.length}</span></Link></div>
     <div className="searchDiv"><img className="cartImg" onClick={this.handleSearch.bind(this)} src={searchIcon}/></div>
